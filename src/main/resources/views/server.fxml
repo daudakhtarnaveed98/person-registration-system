@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="1280.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pk.edu.nust.seecs.advanced_programming.assignments.controllers.ServerController">
+    <Pane prefHeight="100.0" prefWidth="800.0" style="-fx-background-color: #2364AA;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Label layoutX="502.0" layoutY="19.0" text="TCP Server" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="Ubuntu Bold" size="52.0" />
+            </font>
+        </Label>
+    </Pane>
+   <Label layoutX="15.0" layoutY="110.0" text="Server Logs" textFill="#2364aa">
+      <font>
+         <Font name="KacstArt" size="22.0" />
+      </font>
+   </Label>
+   <JFXTextArea fx:id="loggerTextArea" focusColor="#2364aa" layoutX="13.0" layoutY="150.0" prefHeight="600.0" prefWidth="782.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="150.0">
+      <font>
+         <Font name="Ubuntu" size="14.0" />
+      </font></JFXTextArea>
+   <JFXButton id="server-button" layoutX="1116.0" layoutY="458.0" mnemonicParsing="false" onAction="#clearLogs" prefHeight="32.0" prefWidth="150.0" text="Clear Logs" AnchorPane.rightAnchor="14.0" />
+   <JFXButton id="server-start-button" fx:id="startServerButton" layoutX="15.0" layoutY="458.0" mnemonicParsing="false" onAction="#startServer" prefHeight="32.0" prefWidth="150.0" text="Start Server" />
+   <JFXButton id="server-stop-button" fx:id="stopServerButton" disable="true" layoutX="182.0" layoutY="458.0" mnemonicParsing="false" onAction="#stopServer" prefHeight="32.0" prefWidth="150.0" text="Stop Server" />
+</AnchorPane>

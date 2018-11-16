@@ -5,30 +5,36 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.net.URL;
 
-public class Server extends Application {
+public class Main extends Application {
     // Attributes.
-    public static FXMLLoader loader;
+    private static Stage primaryStage = new Stage();
 
     // Methods.
     // Start method.
     @Override
     public void start(Stage primaryStage) throws Exception{
-        loader = new FXMLLoader();
-        URL location = getClass().getClassLoader().getResource("views/server.fxml");
+        FXMLLoader loader = new FXMLLoader();
+        URL location = getClass().getClassLoader().getResource("views/main.fxml");
         loader.setLocation(location);
         Parent root = loader.load();
-        primaryStage.setTitle("TCP Server");
-        primaryStage.setScene(new Scene(root, 1280, 512));
-        primaryStage.setResizable(false);
-        primaryStage.show();
+        Main.primaryStage.setTitle("TCP Client");
+        Main.primaryStage.setScene(new Scene(root, 707, 206));
+        Main.primaryStage.setResizable(false);
+        Main.primaryStage.show();
     }
 
     // Stop method.
     @Override
     public void stop() {
         System.exit(0);
+    }
+
+    // Getters.
+    public static Stage getPrimaryStage() {
+        return primaryStage;
     }
 
     // Main method definition to start program execution.

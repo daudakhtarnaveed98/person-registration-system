@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import pk.edu.nust.seecs.advanced_programming.assignments.Client;
 import pk.edu.nust.seecs.advanced_programming.assignments.helpers.ClientSocketHandler;
 import pk.edu.nust.seecs.advanced_programming.assignments.helpers.PersonConverter;
 import pk.edu.nust.seecs.advanced_programming.assignments.models.Person;
@@ -72,8 +73,6 @@ public class ClientController implements Initializable {
     public void getUser() {
         // Getting username from textfield.
         String userName = searchField.getText().toLowerCase();
-
-
 
          if (userName.equals("")) {
              statusLabel.setText("Please enter username");
@@ -154,6 +153,7 @@ public class ClientController implements Initializable {
         lastName.setText(person.getLastName());
         accessLevel.setText(person.getAccessLevel());
         mobileNumber.setText(person.getMobileNumber());
+
     }
 
     @Override

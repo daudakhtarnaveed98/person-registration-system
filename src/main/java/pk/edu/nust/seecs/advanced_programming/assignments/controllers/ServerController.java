@@ -32,8 +32,10 @@ public class ServerController implements Initializable {
         stopServerButton.setDisable(true);
         try {
             socketHandler.serverSocket.close();
-            if (socketHandler.clientSocket != null)
-                    socketHandler.clientSocket.close();
+
+            if (socketHandler.clientSocket != null) {
+                socketHandler.clientSocket.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

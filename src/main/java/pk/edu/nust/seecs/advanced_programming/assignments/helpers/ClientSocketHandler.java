@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import pk.edu.nust.seecs.advanced_programming.assignments.Client;
 import pk.edu.nust.seecs.advanced_programming.assignments.controllers.ClientController;
 import pk.edu.nust.seecs.advanced_programming.assignments.models.Person;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -12,13 +11,13 @@ import java.net.Socket;
 
 public class ClientSocketHandler extends Thread {
     // Attributes.
-    public DataInputStream clientInputStream;
-    public DataOutputStream clientOutputStream;
-    public String serverIpAddress;
-    public int serverPortNumber;
-    public ClientController clientController;
+    private DataInputStream clientInputStream;
+    private DataOutputStream clientOutputStream;
+    private String serverIpAddress;
+    private int serverPortNumber;
+    private ClientController clientController;
     public Socket socket;
-    public PersonConverter personConverter;
+    private PersonConverter personConverter;
 
     // Constructors.
     // Constructor with two parameters.
@@ -112,6 +111,7 @@ public class ClientSocketHandler extends Thread {
         } catch (IOException e) {
             Platform.runLater(() -> {
                 clientController.statusLabel.setText("Server not found.");
+                clientController.disconnect.setDisable(true);
                 clientController.connect.setDisable(false);
             });
         }

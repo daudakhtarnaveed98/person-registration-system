@@ -5,15 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import pk.edu.nust.seecs.advanced_programming.assignments.helpers.ClientSocketHandler;
-
 import java.net.URL;
 
 public class Client extends Application {
     // Attributes.
     public static FXMLLoader loader;
 
-    // Methods.
+    // Methods
     // Start method.
     @Override
     public void start(Stage primaryStage) throws Exception{

@@ -15,13 +15,12 @@ public class ServerSocketHandler extends Thread {
     // Attributes.
     public ServerSocket serverSocket;
     public Socket clientSocket;
-    public DataInputStream inputStream;
-    public DataOutputStream outputStream;
-    public int port;
-    public ServerController serverController;
-    public PersonConverter personConverter;
+    private DataInputStream inputStream;
+    private DataOutputStream outputStream;
+    private int port;
+    private ServerController serverController;
+    private PersonConverter personConverter;
     private DBHandler dbHandler;
-    private static String response;
 
     // Constructors.
     // Constructor with one parameter, port.
@@ -64,58 +63,64 @@ public class ServerSocketHandler extends Thread {
                     serverController.loggerTextArea.appendText("Client sent: " + receivedMessage + "\n");
                     String tag = personConverter.getTag(receivedMessage);
 
-                    if (tag.equals("post")) {
-                        Person person = personConverter.JSONToPerson(personConverter.getCleanObject(receivedMessage));
-                        if (dbHandler.get(person.getUsername()) == null) {
-                            dbHandler.register(person);
-                            try {
-                                outputStream.writeUTF("successful");
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                    switch (tag) {
+                        case "post": {
+                            Person person = personConverter.JSONToPerson(personConverter.getCleanObject(receivedMessage));
+                            if (dbHandler.get(person.getUsername()) == null) {
+                                dbHandler.register(person);
+                                try {
+                                    outputStream.writeUTF("successful");
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                try {
+                                    outputStream.writeUTF("duplicate");
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             }
-                        }
-                        else {
-                            try {
-                                outputStream.writeUTF("duplicate");
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
 
-                    } else if (tag.equals("get")) {
-                        Person person = dbHandler.get(personConverter.removeTag(receivedMessage));
-                        if (person != null) {
-                            String personJSON = personConverter.personToJSON(person);
-                            String taggedPersonJSON = personConverter.setTag(personJSON, "found");
+                            break;
+                        }
+                        case "get": {
+                            Person person = dbHandler.get(personConverter.removeTag(receivedMessage));
+                            if (person != null) {
+                                String personJSON = personConverter.personToJSON(person);
+                                String taggedPersonJSON = personConverter.setTag(personJSON, "found");
 
+                                try {
+                                    outputStream.writeUTF(taggedPersonJSON);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                try {
+                                    outputStream.writeUTF("none");
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            break;
+                        }
+                        case "put": {
+                            Person person = personConverter.JSONToPerson(personConverter.getCleanObject(receivedMessage));
+                            dbHandler.update(person);
                             try {
-                                outputStream.writeUTF(taggedPersonJSON);
+                                outputStream.writeUTF("updated");
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                            break;
                         }
-                        else {
+                        case "delete":
+                            dbHandler.delete(personConverter.removeTag(receivedMessage));
                             try {
-                                outputStream.writeUTF("none");
+                                outputStream.writeUTF("deleted");
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        }
-                    } else if (tag.equals("put")) {
-                        Person person = personConverter.JSONToPerson(personConverter.getCleanObject(receivedMessage));
-                        dbHandler.update(person);
-                        try {
-                            outputStream.writeUTF("updated");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } else if (tag.equals("delete")) {
-                        dbHandler.delete(personConverter.removeTag(receivedMessage));
-                        try {
-                            outputStream.writeUTF("deleted");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                            break;
                     }
 
                 });

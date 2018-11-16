@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="707.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pk.edu.nust.seecs.advanced_programming.assignments.controllers.MainController">
+    <Pane prefHeight="100.0" prefWidth="707.0" style="-fx-background-color: D8572A;">
+        <Label layoutX="38.0" layoutY="19.0" text="Client / Server Controller" textFill="WHITE">
+            <font>
+                <Font name="Ubuntu Bold" size="52.0" />
+            </font>
+        </Label>
+    </Pane>
+   <JFXButton fx:id="runClientButton" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" onAction="#runClient" prefHeight="80.0" prefWidth="330.0" text="Run Client" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" />
+   <JFXButton fx:id="runServerButton" layoutX="364.0" layoutY="113.0" mnemonicParsing="false" onAction="#runServer" prefHeight="80.0" prefWidth="330.0" text="Run Server" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="10.0" />
+</AnchorPane>

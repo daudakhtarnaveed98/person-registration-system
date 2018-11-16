@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import pk.edu.nust.seecs.advanced_programming.assignments.Server;
 import pk.edu.nust.seecs.advanced_programming.assignments.controllers.ServerController;
 import pk.edu.nust.seecs.advanced_programming.assignments.models.Person;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;

@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class ClientSocketHandler extends Thread {
-    // Attributes.
-    private DataInputStream clientInputStream;
     private DataOutputStream clientOutputStream;
     private String serverIpAddress;
     private int serverPortNumber;
@@ -43,23 +41,14 @@ public class ClientSocketHandler extends Thread {
         }
     }
 
-    // Method to receive response.
-    public void receive() {
-        try {
-            String response = clientInputStream.readUTF();
-            System.out.println(response);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     // Overriding run method of Thread class.
     @Override
     public void run() {
         try {
             socket = new Socket(serverIpAddress, serverPortNumber);
             clientOutputStream = new DataOutputStream(socket.getOutputStream());
-            clientInputStream = new DataInputStream(socket.getInputStream());
+            // Attributes.
+            DataInputStream clientInputStream = new DataInputStream(socket.getInputStream());
 
             Platform.runLater(() -> {
                 clientController.statusLabel.setText("Connected to " + serverIpAddress + ":" + serverPortNumber);
@@ -107,7 +96,6 @@ public class ClientSocketHandler extends Thread {
 
                 }
             }
-
         } catch (IOException e) {
             Platform.runLater(() -> {
                 clientController.statusLabel.setText("Server not found.");

@@ -57,7 +57,7 @@ public class PersonConverter implements TagHelper {
     }
 
     // Method to remove tag from a String.
-    public String removeTag(String taggedString) {
+    String removeTag(String taggedString) {
         return taggedString.substring(taggedString.indexOf(":") + 1);
     }
 }

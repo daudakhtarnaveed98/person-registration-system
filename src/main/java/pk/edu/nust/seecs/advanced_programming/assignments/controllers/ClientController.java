@@ -4,15 +4,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import pk.edu.nust.seecs.advanced_programming.assignments.Client;
 import pk.edu.nust.seecs.advanced_programming.assignments.helpers.ClientSocketHandler;
 import pk.edu.nust.seecs.advanced_programming.assignments.helpers.PersonConverter;
 import pk.edu.nust.seecs.advanced_programming.assignments.models.Person;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

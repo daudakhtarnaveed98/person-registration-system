@@ -101,11 +101,11 @@ public class ClientController implements Initializable {
 
     // Method to enable the register button.
     public void toggleRegisterButton() {
-        if (isFormFilled() && isMobileNumberValid()) {
+        if (isFormFilled() && isMobileNumberValid() && connect.isDisable()) {
                 register.setDisable(false);
                 register.setText("Register");
         }
-        if (!username.isDisabled() && isMobileNumberValid() && isFormFilled()) {
+        if (!username.isDisabled() && isMobileNumberValid() && isFormFilled() && connect.isDisable()) {
             register.setText("Register");
         }
         else {

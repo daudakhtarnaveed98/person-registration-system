@@ -20,38 +20,16 @@ public class MainController {
     public void runClient() {
         Platform.runLater(() -> {
             try {
-                if (client == null) {
-                    client = new Client();
-                    client.start(new Stage());
-                    runClientButton.setText("Client is Running");
-                    closeMainController();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
-    // Method to run server.
-    public void runServer() {
-        Platform.runLater(() -> {
-            try {
-                if (server == null) {
+                if (client == null && server == null) {
                     server = new Server();
+                    client = new Client();
                     server.start(new Stage());
-                    runServerButton.setText("Client is Running");
-                    closeMainController();
+                    client.start(new Stage());
+                    Main.getPrimaryStage().hide();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-    }
-
-    // Method to close main.
-    private void closeMainController() {
-        if (client != null && server != null)
-            Main.getPrimaryStage().close();
-
     }
 }

@@ -11,17 +11,18 @@ import java.net.URL;
 public class Main extends Application {
     // Attributes.
     private static Stage primaryStage = new Stage();
+    static FXMLLoader loader;
 
     // Methods.
     // Start method.
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader();
+        loader = new FXMLLoader();
         URL location = getClass().getClassLoader().getResource("views/main.fxml");
         loader.setLocation(location);
         Parent root = loader.load();
         Main.primaryStage.setTitle("TCP Client");
-        Main.primaryStage.setScene(new Scene(root, 707, 206));
+        Main.primaryStage.setScene(new Scene(root, 465, 158));
         Main.primaryStage.setResizable(false);
         Main.primaryStage.show();
     }

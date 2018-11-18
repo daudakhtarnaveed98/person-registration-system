@@ -13,7 +13,6 @@ import java.net.URL;
 public class Client extends Application {
     // Attributes.
     public static FXMLLoader loader;
-    private MainController mainController = Main.loader.getController();
 
     // Methods
     // Start method.
